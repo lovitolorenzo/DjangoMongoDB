@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends 'account/main.html' %}
+{% block content %}
+<head>
+    <title>Home</title>
+</head>
+
+<body>
+
+
+				<div class="my_small_top_padding" style="{float:right; width:50%}">
+					<form method="GET">
+					{% csrf_token %}
+
+					</form>
+				</div>
+		<div class="w3-center w3-text-light-grey w3-bar black. w3-wide w3-padding w3-card container">
+			<h2>Buy Orders</h2>
+			{% for order in orders_buy %}
+			<div>
+				<div class="w3-center w3-text-light-grey w3-bar black. w3-wide w3-padding w3-card container">
+					<div>
+						<h6>{{ user.username|linebreaksbr }}, {{ order.datetime }}, Pending Status: {{ order.pending }} </h6>
+					</div>
+					<h2>Quantity: {{ order.offer }}</h2>
+					<h2>Price: {{ order.demand_quantity }}</h2>
+                    </div>
+				</div>
+			</div>
+			{% endfor %}
+
+			<div class="w3-center">
+			{% for message in messages %}
+				<hr>
+			<h2><a class="w3-center w3-text-light-grey " id="messages"> {{message}}</a></h2>
+			{% endfor %}
+			</div>
+
+			<div class="w3-center w3-text-light-grey w3-bar black. w3-wide w3-padding w3-card container">
+				<hr>
+			<h2>Sell Orders</h2>
+			{% for order in orders_sell %}
+			<div>
+				<div class="w3-center w3-text-light-grey w3-bar black. w3-wide w3-padding w3-card container">
+					<div>
+						<h6>{{ user.username|linebreaksbr }}, {{ order.datetime }}, Pending Status: {{ order.pending }} </h6>
+					</div>
+					<h2>Sell quantity: {{ order.selling_quantity }}</h2>
+					<h2>Price: {{ order.selling_price }}</h2>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+</body>
+{% endblock %}

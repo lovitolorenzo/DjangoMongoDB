@@ -1,0 +1,22 @@
+{% extends 'account/main.html' %}
+
+{% block content %}
+
+	<div class="w3-bar w3-black w3-wide w3-padding w3-card container" style="margin-left:300px">
+		<h2>Buy your BitCoins!</h2>
+		<form method="POST">
+                {% csrf_token %}
+
+                Buying price : <input class="text-muted f-w-400" name="buy_price" value=0.00 > $
+				<br><hr>
+                Bitcoins quantity : <input class="text-muted f-w-400" name="buy_quantity" value=0.00 >
+				<br><hr>
+			    <button type="submit" class="save btn btn-default">Save</button>
+		</form>
+		<div class="w3-third w3-container w3-margin-bottom">
+			{% for message in messages %}
+				<p id="messages">{{message}}</p>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'account/main.html' %}
+{% block content %}
+
+<head>
+    <title>My_data</title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static '/css/profile_style.css' %}">
+
+</head>
+
+<body>
+<form method='GET' action="" >
+		{% csrf_token %}
+</form>
+<div class="w3-center w3-text-light-grey w3-bar black. w3-wide w3-padding w3-card container">
+	<div class="page-content page-container" id="page-content">
+			<div class="padding">
+				<div class="row container d-flex justify-content-center">
+					<div class="col-xl-6 col-md-12">
+						<div class="card user-card-full">
+							<div class="row m-l-0 m-r-0">
+								<div class="col-sm-8">
+									<div class="card-block">
+										<h4 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h4>
+                                        <div class="col-sm-6">
+												<p class="m-b-10 f-w-600">Username</p>
+												<h6 class="text-muted f-w-400">{{context.user_data.username}}</h6>
+											</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<p class="m-b-10 f-w-600">Email</p>
+												<h6 class="text-muted f-w-400">{{context.user_data.email}}</h6>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<p class="m-b-10 f-w-600">Registration date</p>
+												<h6 class="text-muted f-w-400">{{context.user_data.date_joined}}</h6>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<p class="m-b-10 f-w-600">Staff</p>
+												<h6 class="text-muted f-w-400">{{context.user_data.is_staff}}</h6>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<p class="m-b-10 f-w-600">BitCoins</p>
+												<h6 class="text-muted f-w-400">{{context.user_profile.BitCoin}}</h6>
+											</div>
+										</div>
+                                        <div class="row">
+											<div class="col-sm-6">
+												<p class="m-b-10 f-w-600">Starting Amount</p>
+												<h6 class="text-muted f-w-400">{{context.user_profile.starting_balance}}</h6>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<p class="m-b-10 f-w-600">Current Amount</p>
+												<h6 class="text-muted f-w-400">{{context.user_profile.balance}}</h6>
+											</div>
+                                        <div class="row">
+											<div class="col-sm-6">
+												<p class="m-b-10 f-w-600">Your order</p>
+												<h6 class="text-muted f-w-400">Buy orders: {{context.b_order}}</h6>
+                                                <h6 class="text-muted f-w-400">Sell orders: {{context.s_order}}</h6>
+											</div>
+											{% if context.variations < "0" %}
+											<div class="row">
+												<div class="col-sm-6">
+													<p class="m-b-10 f-w-600">Loss</p>
+													<h6 class="text-muted f-w-400">{{context.variations}}</h6>
+												</div>
+											</div>
+											{% else %}
+											<div class="row">
+												<div class="col-sm-6">
+													<p class="m-b-10 f-w-600">Profit</p>
+													<h6 class="text-muted f-w-400">{{context.variations}}</h6>
+												</div>
+											</div>
+											{% endif %}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+
+
+
+</body>
+
+{% endblock %}

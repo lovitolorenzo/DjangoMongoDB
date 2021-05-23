@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% extends 'account/main.html' %}
+<!--<script>
+{% block jquery %}
+var endpoint = '/api/chart/data/'
+var defaultData = [];
+var labels = [];
+$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data){
+        labels = data.labels
+        defaultData = data.default
+        setChart()
+    },
+    error: function(error_data){
+        console.log("error")
+        console.log(error_data)
+    }
+})
+
+function setChart(){
+    var ctx = document.getElementById("myChart");
+    var ctx2 = document.getElementById("myChart2");
+    var myChart = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: '# of Votes',
+            data: defaultData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+    var myChart = new Chart(ctx, {
+    type: 'polarArea',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: '# of Votes',
+            data: defaultData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+}
+// var ctx = document.getElementById("myChart");
+
+
+
+{% endblock %}
+</script>-->
+
+{% block content %}
+
+
+<head>
+    <title>Home</title>
+</head>
+
+<body>
+
+<!--<canvas id="myChart" width="400" height="400"></canvas>-->
+
+
+	<form method="GET" action="" name="myform" value="home" id="subform">
+		{% csrf_token %}
+	</form>
+
+				<div class="my_small_top_padding" style="{float:right; width:50%}">
+					<form method="GET">
+					{% csrf_token %}
+
+					</form>
+				</div>
+	<hr>
+	<div class="w3-center">
+	{% for element in bitcoin_current %}
+	<h3><a class=" w3-text-light-grey w3-bar-item w3-button"> Current Bitcoin Price: {{element|floatformat:2}}€ </a></h3>
+	{% endfor %}
+		<hr>
+	{% for element in bitcoin_supply %}
+	<h3><a class=" w3-text-light-grey w3-bar-item w3-button"> Current Circulating Bitcoin: {{element}} </a></h3>
+	{% endfor %}
+	<hr>
+		<div class="w3-center w3-text-light-grey w3-bar black. w3-wide w3-padding w3-card container">
+			{% for order in orders %}
+			<div>
+				<div class="w3-center w3-text-light-grey w3-bar black. w3-wide w3-padding w3-card container">
+					<div>
+						<h6>Release: {{ order.datetime }}, Pending Status: {{ order.pending }} </h6>
+					</div>
+					<h2>Sell quantity: {{ order.selling_quantity }}</h2>
+					<h2>Price: {{ order.selling_price }}</h2>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+
+		{% for message in messages %}
+			<h2><a class="w3-text-light-grey w3-bar-item w3-button" id="messages"> {{message}}</a></h2>
+
+		{% endfor %}
+	</div>
+	<hr>
+
+
+</body>
+{% endblock %}

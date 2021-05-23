@@ -1,0 +1,93 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+			body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+			.bottom {position: absolute; bottom: 0;}
+		</style>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/navbar_style.css' %}">
+		<script type="text/javascript" src="{% static 'js/navbar_script.js' %}"></script>
+    </head>
+
+    <body style="max-width:1600px">
+
+		<!-- Navbar (sit on top) -->
+		<div class="w3-top container">
+			<div class="w3-bar w3-light w3-wide w3-padding w3-card container">
+				<a href="/" class="w3-text-white w3-bar-item w3-button"> BitCoin Exchange <br> <b>LL  </b></a>
+				<div class="navbar-collapse collapse w3-right" id="collapse-1">
+					<ul class="nav navbar-nav">
+						<a href="{% url 'my_data' %}" class="w3-text-white w3-bar-item w3-button"> My Data </a>
+						<a href="{% url 'buy' %}" class="w3-text-white w3-bar-item w3-button"> Buy Order </a>
+						<a href="{% url 'sell' %}" class="w3-text-white w3-bar-item w3-button"> Sell Order </a>
+						<a href="{% url 'your_orders' %}" class="w3-text-white w3-bar-item w3-button"> Your Orders </a>
+						<a href="{% url 'contact' %}"><span class="w3-text-white w3-bar-item w3-button"> Contact Me </span></a>
+						<a href="{% url 'logout' %}"><span class="w3-text-white w3-bar-item w3-button"> Log Out </span></a>
+						</ul>
+				</div>
+			</div>
+		</div>
+
+		<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+		  <img class="w3-image" src="{% static 'images/Best-Bitcoin-Wallets.jpg' %}" alt="Image" width="1500" height="800">
+		  <!--<div class="w3-display-bottommiddle w3-margin-top w3-center">
+			<h1 class="w3-xxxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>LL</b></span> <hr>  <span class="w3-hide-small w3-text-light-grey">BitCoin Exchange</span></h1>
+		  </div>-->
+		</header>
+
+		<!-- Overlay effect when opening sidebar on small screens -->
+		<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay">
+		</div>
+
+		{% block content %}
+		{% endblock %}
+
+
+		<footer class="w3-container w3-padding-32 w3-white w3-center">
+			<div class="row">
+				<div class="col-md-12 text-center ">
+				    <ul class="list-inline social-links">
+						<li><a href="https://github.com/#" class="btn-social btn-outline" data-toggle="tooltip" data-placement="top" title="Github"><i class="fa fa-github"></i></a>
+						</li>
+						<li><a href="https://twitter.com/#" class="btn-social btn-outline" title="Twitter"><i class="fa fa-twitter"></i></a>
+						</li>
+						<li><a href="https://ph.linkedin.com/in/#" class="btn-social btn-outline" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+						</li>
+						<li><a href="https://instagram.com/#" class="btn-social btn-outline" title="Instagram"><i class="fa fa-instagram"></i></a>
+						</li>
+						<li><a href="https://facebook.com/#" class="btn-social btn-outline" title="Facebook"><i class="fa fa-facebook"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+
+		<script>
+		// Script to open and close sidebar
+		function w3_open() {
+			document.getElementById("mySidebar").style.display = "block";
+			document.getElementById("myOverlay").style.display = "block";
+		}
+
+		function w3_close() {
+			document.getElementById("mySidebar").style.display = "none";
+			document.getElementById("myOverlay").style.display = "none";
+		}
+		</script>
+
+	</body>
+</html>
