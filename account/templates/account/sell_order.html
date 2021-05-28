@@ -15,14 +15,15 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<h3><p class="m-b-10 f-w-600">Bitcoins:</p></h3>
+						<select name="sell_quantity">
+							{% for n in bitcoin_range %}
+							<!--<button name= "sell_quantity" value= "{{sell_quantity}}" class= "btn btn-outline-secondary add-btn update-cart">Bitcoins quantity : <input name="sell_quantity" value=0.00 > $ </button>-->
+							<option name="sell_quantity" class="text-muted f-w-400">{{n}}</option>
+							{% endfor %}
+						</select>
 					</div>
 				</div>
-				<select name="sell_quantity">
-				{% for n in bitcoin_range %}
-                <!--<button name= "sell_quantity" value= "{{sell_quantity}}" class= "btn btn-outline-secondary add-btn update-cart">Bitcoins quantity : <input name="sell_quantity" value=0.00 > $ </button>-->
-				<option name="sell_quantity" class="text-muted f-w-400">{{n}}</option>
-				{% endfor %}
-				</select>
+
 				<button type="submit" class="save btn btn-default">Save</button>
 		</form>
 		<div class="w3-third w3-container w3-margin-bottom">
