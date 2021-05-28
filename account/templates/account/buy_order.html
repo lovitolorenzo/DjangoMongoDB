@@ -7,9 +7,9 @@
 		<form method="POST">
                 {% csrf_token %}
 
-                Buying price : <input class="text-muted f-w-400" name="buy_price" value=0.00 > $
+                Buying price : <input class="text-muted f-w-400" name="buy_price" placeholder=0.00 > $
 				<br><hr>
-                Bitcoins quantity : <input class="text-muted f-w-400" name="buy_quantity" value=0.00 >
+                Bitcoins quantity : <input class="text-muted f-w-400" name="buy_quantity" placeholder=0.00 >
 				<br><hr>
 			    <button type="submit" class="save btn btn-default">Save</button>
 		</form>
