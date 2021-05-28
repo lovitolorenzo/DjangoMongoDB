@@ -332,19 +332,22 @@ def match_orders(buy, sell):
 def complete_orders():
     buys = Buy.objects.filter(pending = True)
     sells = Sell.objects.filter(pending = True)
-    for buy in buys:
-        price = float('inf')
-        order = None
-        for sell in sells:
-            if match_orders(buy, sell):
-                if sell.selling_price < price:
-                    order = sell
-                    price = sell.selling_price
-        if type(order) == None:
-            continue
-        else:
-            change_after_buying(buy, sell)
-            change_after_selling(buy, sell)
+    if len(sells) > 0 and len(buys) > 0:
+        for buy in buys:
+            price = float('inf')
+            order = None
+            for sell in sells:
+                if match_orders(buy, sell):
+                    if sell.selling_price < price:
+                        order = sell
+                        price = sell.selling_price
+            if type(order) == None:
+                continue
+            else:
+                change_after_buying(buy, sell)
+                change_after_selling(buy, sell)
+    else:
+        pass
 
 
 
