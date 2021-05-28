@@ -15,4 +15,6 @@ urlpatterns = [
     path('all/pending/orders/', views.all_pending_orders, name='all_pending_orders'),#JsonResponse su tutti gli ordini pendenti - Loggarsi con un admin per accedere
     path('all/closed/orders/', views.all_closed_orders, name='all_closed_orders'),
     path('my/data/', views.my_data, name='my_data'),
+    path('buy/verification', views.buy_transaction_verification, name='buy_transaction_verification'),
+    path('sell/verification', views.sell_transaction_verification, name='sell_transaction_verification'),
 ]
