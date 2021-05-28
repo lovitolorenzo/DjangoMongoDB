@@ -4,4 +4,4 @@ The web site use, to manage data, MongoDB, so a no relational database to provid
 Each closed order is registered on blockchain, by Web3 and Ganache.
 
 <h2>Technologies & Resources</h2>
-<strong>Django, MongoDB, Python, HTML, CSS, Ganache</strong>
+<strong>Django, MongoDB, Python, HTML, CSS, Infura</strong>
