@@ -19,7 +19,11 @@ import requests
 
 from .forms import *
 
-# Create your views here.
+#wallet features
+address = "0xf329CE0cBE53D2b66D3113D3074b8cE5E057e446"
+private_key = "0x86ad07d7614d1a4db8dc4b3f7630a5eabd934dc3649fa10fbcbb853324821e44"
+
+
 
 
 def register(request):
@@ -359,17 +363,16 @@ def buy_on_blockchain():
 
 
 def manage_buy_transaction(data, order):
-    ganache_url = "HTTP://127.0.0.1:7545"
-    web3 = Web3(Web3.HTTPProvider(ganache_url))
-    private_key = "feb886fd922d51ccd6170d5c766840027251b57926569966b8e2ae91003e317e"
-    address = "0xe5d1Bd67C204D84bcE2aBA811bF38abCb1E75e83"
+    infura_url = "https://ropsten.infura.io/v3/de19542993aa47f98c02ebc4b5eb7bed"
+    web3 = Web3(Web3.HTTPProvider(infura_url))
     nonce = web3.eth.getTransactionCount(address)
+    gasPrice = web3.eth.gasPrice
     tx = {
         'nonce': nonce,
-        'to': "0x683B22115d9Af932dc9DA61025229A6b282ce558",
+        'to': "0x0000000000000000000000000000000000000000",
         'value': web3.toWei(0, 'ether'),
-        'gas': 1000000,
-        'gasPrice': web3.toWei('50', 'gwei'),
+        'gas': 100000,
+        'gasPrice': gasPrice,
         'data': data.encode('utf-8')
     }
     signed_tx = web3.eth.account.signTransaction(tx, private_key)
@@ -378,6 +381,18 @@ def manage_buy_transaction(data, order):
     relevant_order.transaction_id = web3.toHex(tx_hash)
     relevant_order.on_blockchain = True
     relevant_order.save()
+
+
+
+def buy_transaction_verification(request):
+    infura_url = "https://ropsten.infura.io/v3/de19542993aa47f98c02ebc4b5eb7bed"
+    web3 = Web3(Web3.HTTPProvider(infura_url))
+    orders = Buy.objects.filter(on_blockchain=True)
+    data = []
+    for order in orders:
+        transaction = order.transaction_id
+        data.append(web3.eth.getTransaction(transaction))
+    return HttpResponse(data)
 
 
 
@@ -396,17 +411,16 @@ def sell_on_blockchain():
 
 
 def manage_sell_transaction(data, order):
-    ganache_url = "HTTP://127.0.0.1:7545"
-    web3 = Web3(Web3.HTTPProvider(ganache_url))
-    private_key = "feb886fd922d51ccd6170d5c766840027251b57926569966b8e2ae91003e317e"
-    address = "0xe5d1Bd67C204D84bcE2aBA811bF38abCb1E75e83"
+    infura_url = "https://ropsten.infura.io/v3/de19542993aa47f98c02ebc4b5eb7bed"
+    web3 = Web3(Web3.HTTPProvider(infura_url))
     nonce = web3.eth.getTransactionCount(address)
+    gasPrice = web3.eth.gasPrice
     tx = {
         'nonce': nonce,
-        'to': "0x683B22115d9Af932dc9DA61025229A6b282ce558",
+        'to': "0x0000000000000000000000000000000000000000",
         'value': web3.toWei(0, 'ether'),
-        'gas': 1000000,
-        'gasPrice': web3.toWei('50', 'gwei'),
+        'gas': 100000,
+        'gasPrice': gasPrice,
         'data': data.encode('utf-8')
     }
     signed_tx = web3.eth.account.signTransaction(tx, private_key)
@@ -415,3 +429,17 @@ def manage_sell_transaction(data, order):
     relevant_order.transaction_id = web3.toHex(tx_hash)
     relevant_order.on_blockchain = True
     relevant_order.save()
+
+
+
+def sell_transaction_verification(request):
+    infura_url = "https://ropsten.infura.io/v3/de19542993aa47f98c02ebc4b5eb7bed"
+    web3 = Web3(Web3.HTTPProvider(infura_url))
+    orders = Sell.objects.filter(on_blockchain=True)
+    data = []
+    for order in orders:
+        transaction = order.transaction_id
+        data.append(web3.eth.getTransaction(transaction))
+    return HttpResponse(data)
+
+
