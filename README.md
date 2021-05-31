@@ -1,7 +1,7 @@
 # DjangoMongoDB
-Here we have a web site which simulate orders on Bitcoin, so to buy and sell Bitcoins by his users.<br>
-The web site use, to manage data, MongoDB, so a no relational database to provide an higher speed than an usual SQL.<br>
-Each closed order is registered on blockchain, by Web3 and Ganache.
+Here we have a web site which simulates orders on Bitcoin, in order its users the possibility to buy and sell Bitcoins.<br>
+The web site uses MongoDB, to manage data, a no relational database to provide an higher speed compared an usual SQL.<br>
+Each closed order is registered on blockchain by Web3 and Infura.
 
 <h2>Technologies & Resources</h2>
 <strong>Django, MongoDB, Python, HTML, CSS, Infura</strong>
